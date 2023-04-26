@@ -1,4 +1,8 @@
+import { Observable } from 'rxjs';
+import { User, UsersService } from './services/users.service';
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { PaymentModalComponent } from './components/payment-modal/payment-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'picpay-frontend';
+
 }
