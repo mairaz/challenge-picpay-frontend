@@ -1,0 +1,5 @@
+<ng-container *ngIf="(users$ | async) as users">
+  <div *ngFor="let user of users">
+    <app-users-list [user]="user" (openModal)="openPaymentModal(user)"></app-users-list>
+  </div>
+</ng-container>
