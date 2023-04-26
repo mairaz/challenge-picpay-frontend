@@ -1,0 +1,56 @@
+<div class="container-fluid bg-success p-3 text-center position-relative">
+  Pagamento para {{data.name}}
+  <div class="position-absolute end-0 top-0 me-2 mt-2" >X</div>
+</div>
+<div class="container pt-5 px-5">
+  <form [formGroup]="paymentForm" *ngIf="isCardAvailable" (ngSubmit)="sendPayment()">
+    <div class="mb-3">
+      <label for="cards" class="form-label">Credit Card</label>
+      <div class="input-group mb-3">
+        <select name="" formControlName="card" class="form-select" id="cards">
+          <option>Select a Credit Card</option>
+          <option [ngValue]="card " *ngFor="let card of cards; let i = index">
+            {{card['card_number']}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">R$</span>
+      <input type="text" class="form-control" formControlName="amount" class="form-control" aria-label="Amount (to the nearest dollar)">
+    </div>
+    <button class="btn btn-success" type="submit">Pagar</button>
+  </form>
+  <form [formGroup]="subscribeCardForm" *ngIf="!isCardAvailable" (ngSubmit)="subscribe()">
+
+    <div class="mb-3">
+      <label for="card_number" class="form-label">Card Number</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="card_number">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="cvv" class="form-label">CVV</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="cvv" formControlName="cvv">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="expiry_date" class="form-label">Expiry Date</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="expiry_date" formControlName="expiry_date">
+      </div>
+    </div>
+
+
+    <div class="input-group mb-3">
+      <span class="input-group-text">R$</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+    </div>
+    <button class="btn btn-success" type="submit">Pagar</button>
+  </form>
+  <div *ngIf="isCardAvailable" class="mt-5">
+    <p>Não possui um cartão cadastrado? <span (click)="subscribeCard()">Clique aqui</span> </p>
+  </div>
+</div>
